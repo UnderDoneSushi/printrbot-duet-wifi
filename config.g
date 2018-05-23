@@ -1,4 +1,4 @@
-; Think3DPrint3D configuration file for Printrbot Simple Metal Duet WiFi
+; Think3DPrint3D configuration file for Mini Kossel for testing Duet WiFi
 
 ; Communication and general
 M111 S0                             	; Debug off
@@ -17,22 +17,21 @@ G90                                	; Send absolute coordinates...
 M83                                 	; ...but relative extruder moves
 
 ; Axis and motor configuration
-M569 P0 S1                          ; Drive 0 goes forwards (change to S0 to reverse it)
-M569 P1 S1                          ; Drive 1 goes backwards
-M569 P2 S1                          ; Drive 2 goes forwards
-M569 P3 S1                          ; Drive 3 goes forwards
-M569 P4 S1                          ; Drive 4 goes forwards
+M569 P0 S0                          ; Drive 0 (x motor) goes reverse
+M569 P1 S0                          ; Drive 1 (y motor) goes reverse
+M569 P2 S0                          ; Drive 2 (z motor) goes reverse
+M569 P3 S0                         ; Drive 3 (ext motor) goes reverse
+;M569 P4 S1                          ; Drive 4 goes forwards
 
 M350 X16 Y16 Z16 E16 I1             ; set 16x microstepping with interpolation
-M574 X1 Y1 Z1 S1		    ; set homing switch configuration (Y and y switches, at low end, active high)
+M574 X1 Y1 Z0 S1		    ; set homing switch configuration (x and y switches, at low end, active high)
 M906 X800 Y800 Z800 E800            ; Set motor currents (mA)
-M201 X800 Y800 Z15 E100             ; Accelerations (mm/s^2)
-M203 X6000 Y6000 Z100 E600          ; Maximum speeds (mm/min)
-M566 X30 Y30 Z30 E20              ; Maximum jerk speeds mm/minute
-M208 X150 Y150 Z100                 ; set axis maxima and high homing switch positions (adjust to suit your machine)
-M208 X-0 Y0 Z0 S1                ; set axis minima and low homing switch positions (adjust to make X=0 and Y=0 the edges of the bed)
-M92 X80 Y80 Z2020 E95               ; set axis steps/mm
-;M92 E420:420                       ; set extruder 0 and 1 steps/mm
+M201 X1000 Y1000 Z1000 E100         ; Accelerations (mm/s^2)
+M203 X3000 Y3000 Z3000 E600         ; Maximum speeds (mm/min)
+M566 X1000 Y1000 Z1000 E50          ; Maximum jerk speeds mm/minute
+M208 X203 Y203 Z240                 ; set axis max and high homing switch positions (adjust to suit your machine)
+M208 X-0 Y0 Z0 S1                   ; set axis min and low homing switch positions (adjust to make X=0 and Y=0 the edges of the bed)
+M92 X80 Y80 Z400 E95                ; set axis steps/mm
 G21                                 ; Work in millimetres
 G90                                 ; Send absolute coordinates...
 M83                                 ; ...but relative extruder moves
@@ -44,7 +43,7 @@ M305 P2 T100000 B3974 R4700 H30 L0	; Put your own H and/or L values here to set 
 M570 S180				; Hot end may be a little slow to heat up so allow it 180 seconds
 
 ; Fans
-M106 P1 H-1 				; disable thermostatic mode for fan 1
+;M106 P1 H-1 				; disable thermostatic mode for fan 1
 
 ; Tool definitions
 M563 P0 D0 H1 F0:1                      ; Define tool 0 - Heater 1, Fan 0 (extruder) and Fan 1 (bed fan)
