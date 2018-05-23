@@ -1,10 +1,6 @@
-G90 ; Absolute Mode
-G1 X0 Y0 ; goto origin
-; 7 points, 4 factors, probing radius: 150, probe offset (0, 0)
-G30 P0 X0.00 Y150.00 Z-99999 H0
-G30 P1 X129.90 Y-75.00 Z-99999 H0
-G30 P2 X-129.90 Y-75.00 Z-99999 H0
-G30 P3 X0.00 Y75.00 Z-99999 H0
-G30 P4 X64.95 Y-37.50 Z-99999 H0
-G30 P5 X-64.95 Y-37.50 Z-99999 H0
-G30 P6 X0 Y0 Z-99999 S4
+M561                         ; clear any existing bed transform
+G30 P0 X25 Y25 Z-99999       ; define 4 points in a clockwise direction around the bed, starting near (0,0)
+G30 P1 X190 Y25 Z-99999
+G30 P2 X190 Y190 Z-99999
+G30 P3 X25 Y190 Z-99999
+G30 P4 X100 Y100 Z-99999 S0    ; finally probe bed centre, and calculate compensation
